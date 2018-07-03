@@ -9,7 +9,8 @@
         
         <form method="POST" action="{{ route('users.update', $user->id) }}">
             {!! method_field('PUT') !!}
-            <input type="hidden" name="remember_token" value="{!! csrf_token() !!}">
+            {!! csrf_field() !!}
+            {{-- <input type="hidden" name="remember_token" value="{!! csrf_token() !!}"> --}}
             <p><label for="Nombre">
                 Nombre
                 <input class="form-control" type="text" name="name" value="{{ $user->name }}">

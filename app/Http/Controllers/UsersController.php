@@ -90,7 +90,7 @@ class UsersController extends Controller
      */
     public function update(Request $request, $id)
     {
-        dd($request->all());
+        //dd($request->all());
         DB::table('users')->where('id', $id)->update([
                 "name" => $request->input('name'),
                 "phone" => $request->input('phone'),
@@ -99,7 +99,7 @@ class UsersController extends Controller
             ]);
 
         //$user = User::findOrFail($id)->update($request->all());
-        dd($request->all());
+        //dd($request->all());
         return redirect()->route('users.index');
     }
 
