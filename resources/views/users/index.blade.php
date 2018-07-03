@@ -26,11 +26,11 @@
 				<td>{{ $user->created_at }}</td>
 				<td>{{ $user->updated_at }}</td>
 				<td>
-					<a href="{{ route('users.edit', $user->id) }}">Editar</a>
-					<form method="POST" action="{{ route('users.destroy', $user->id) }}">
+					<a class="btn btn-info" href="{{ route('users.edit', $user->id) }}">Editar</a>
+					<form class="btn btn-danger btn-xs" method="POST" action="{{ route('users.destroy', $user->id) }}">
 						{!! csrf_field() !!}
 						{!! method_field('DELETE') !!}
-						<button type="submit">Eliminar</button>
+						<button class="btn btn-danger" type="submit">Eliminar</button>
 					</form>
 				</td>
 			</tr>
