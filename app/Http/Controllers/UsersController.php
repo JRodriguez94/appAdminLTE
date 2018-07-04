@@ -50,7 +50,25 @@ class UsersController extends Controller
      */
     public function store(Request $request)
     {
-        $user = User::create($request->all());
+
+        $this->validate($request,
+        [
+            'name' => 'required',
+            'phone' => 'required',
+            'email' => 'required|email',
+            'password' => 'required|min:8',
+           // 'password-confirm' => 'required|same:password'
+        ]);
+
+        if(User::passwordVlidation($request))
+        {
+            //return "Pasa";
+            $user = User::create($request->all());
+        }else
+        {
+            return redirect()->route('users.create')->with('validateP', 'las contraseñas no coinciden');
+        }
+       
         //dd($user);
         //return $user;
         return redirect()->route('users.create')->with('info', 'hemos recibido tu solicitud');

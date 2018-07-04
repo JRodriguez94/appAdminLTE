@@ -31,4 +31,16 @@ class User extends Authenticatable
     {
         $this->attributes['password'] = bcrypt($value);
     }
+
+    public static function passwordVlidation($user)
+    {
+        $tPassword = $user->password;
+        $tConfPassword = $user->password_confirmation;
+         if($tPassword === $tConfPassword)
+         {
+             return true;
+         }else{
+             return false;
+         }
+    }
 }

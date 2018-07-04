@@ -3,8 +3,8 @@
 @section('content')
 
 	<h1>Usuarios</h1>
-	<table class="table">
-		<thead>
+	<table class="table table-dark">
+		<thead class="thead-dark">
 			<tr>
 				<th>Nombre</th>
 				<th>Telefono</th>
@@ -38,7 +38,6 @@
 		</tbody>
 	</table> 
 @endsection
-{{-- @section('css')
+@section('css')
 	<link rel="stylesheet" href="/css/admin_costom.css">
-	<link rel="stylesheet" href="/css/app.css">
-@endsection --}}
+@endsection

@@ -13,17 +13,17 @@
             {{-- <input type="hidden" name="remember_token" value="{!! csrf_token() !!}"> --}}
             <p><label for="Nombre">
                 Nombre
-                <input class="form-control" type="text" name="name" value="{{ $user->name }}">
+                <input class="form-control" type="text" name="name" value="{{ $user->name }}" required>
                 {!! $errors->first('name', '<span class=error>:message</span>') !!}
             </label></p>
             <p><label for="Telefono">
                 Telefono
-                <input class="form-control" type="text" name="phone" value="{{ $user->phone }}">
+                <input class="form-control" type="text" name="phone" value="{{ $user->phone }}" required>
                 {!! $errors->first('phone', '<span class=error>:message</span>') !!}
             </label></p>
             <p><label for="Email">
                 Email
-                <input class="form-control" type="text" name="email" value="{{ $user->email }}">
+                <input class="form-control" type="email" name="email" value="{{ $user->email }}" required>
                 {!! $errors->first('email', '<span class=error>:message</span>') !!}
             </label></p>
             <input class="btn btn-primary" type="submit" value="Enviar">
