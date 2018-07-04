@@ -19,14 +19,13 @@ class UsersController extends Controller
 
     function __construct()
     {
-        //$this->middleware('auth', ['only' => ['create']]);
-        $this->middleware('auth', ['except' => ['create','store']]);
+        $this->middleware('auth');
+        // $this->middleware('auth', ['except' => ['create','store']]);
     }
 
     public function index()
     {
         $users = User::all();
-       // return User::all();
         return view('users.index', compact('users'));
     }
 
@@ -38,8 +37,6 @@ class UsersController extends Controller
     public function create()
     {
         return view("users.create");
-        //dd($request->all());
-        //return all();
     }
 
     /**
@@ -57,21 +54,18 @@ class UsersController extends Controller
             'phone' => 'required',
             'email' => 'required|email',
             'password' => 'required|min:8',
-           // 'password-confirm' => 'required|same:password'
         ]);
 
         if(User::passwordVlidation($request))
-        {
-            //return "Pasa";
-            $user = User::create($request->all());
-        }else
-        {
-            return redirect()->route('users.create')->with('validateP', 'las contraseñas no coinciden');
-        }
-       
-        //dd($user);
-        //return $user;
-        return redirect()->route('users.create')->with('info', 'hemos recibido tu solicitud');
+            {
+                $user = User::create($request->all());
+            }
+        else
+            {
+                return redirect()->route('users.create')->with('validateP', 'las contraseñas no coinciden');
+            }
+
+        return redirect()->route('users.create')->with('info', 'El usuario se ha creado con exito');
     }
 
     /**
@@ -95,7 +89,6 @@ class UsersController extends Controller
     public function edit($id)
     {
         $user = User::findOrFail($id);
-        //return $user;
         return view('users.edit', compact('user'));
     }
 
@@ -108,16 +101,7 @@ class UsersController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //dd($request->all());
-        DB::table('users')->where('id', $id)->update([
-                "name" => $request->input('name'),
-                "phone" => $request->input('phone'),
-                "email" => $request->input('email'),
-                "updated_at" => Carbon::now(),
-            ]);
-
-        //$user = User::findOrFail($id)->update($request->all());
-        //dd($request->all());
+        $user = User::findOrFail($id)->update($request->all());
         return redirect()->route('users.index');
     }
 

@@ -24,7 +24,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $hidden = [
-       // 'password', 'remember_token',
+        'password', 'remember_token',
     ];
 
     public function setPasswordAttribute($value)
@@ -34,12 +34,12 @@ class User extends Authenticatable
 
     public static function passwordVlidation($user)
     {
-        $tPassword = $user->password;
-        $tConfPassword = $user->password_confirmation;
-         if($tPassword === $tConfPassword)
+        
+        if($user->password === $user->password_confirmation)
          {
              return true;
-         }else{
+         }else
+         {
              return false;
          }
     }
