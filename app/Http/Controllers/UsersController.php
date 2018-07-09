@@ -7,6 +7,7 @@ use App\User;
 use Carbon\Carbon;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\CreateUserRequest;
 use Illuminate\Database\Eloquent\Model;
 
 class UsersController extends Controller
@@ -45,26 +46,30 @@ class UsersController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CreateUserRequest $request)
     {
+        $request->flash(); //Esta linea es para que los datos ingresados no se pierdan en caso de que algo salga mal.
+        
+        //----- Estas lineas se remplazan por el Request CreateUserRequest
+        // $this->validate($request,
+        // [
+        //     'name' => 'required',
+        //     'phone' => 'required',
+        //     'email' => 'required|email',
+        //     'password' => 'required|min:8',
+        // ]);
 
-        $this->validate($request,
-        [
-            'name' => 'required',
-            'phone' => 'required',
-            'email' => 'required|email',
-            'password' => 'required|min:8',
-        ]);
+        //dd($request->toArray()); //--Te muestra el request hecho un array
 
-        if(User::passwordVlidation($request))
-            {
-                $user = User::create($request->all());
-            }
-        else
-            {
-                return redirect()->route('users.create')->with('validateP', 'las contraseñas no coinciden');
-            }
-
+        // if(User::passwordVlidation($request))
+        //     {
+        //         $user = User::create($request->all());
+        //     }
+        // else
+        //     {
+        //         return redirect()->route('users.create')->with('validateP', 'las contraseñas no coinciden');
+        //     }
+        $user = User::create($request->all());
         return redirect()->route('users.create')->with('info', 'El usuario se ha creado con exito');
     }
 
@@ -101,6 +106,7 @@ class UsersController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $request->flash(); //Esta linea es para que los datos ingresados no se pierdan en caso de que algo salga mal.
         $user = User::findOrFail($id)->update($request->all());
         return redirect()->route('users.index');
     }

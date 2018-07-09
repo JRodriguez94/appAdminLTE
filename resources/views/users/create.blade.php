@@ -28,6 +28,7 @@
                         {{ session('validateP') }}
                     </label>
                 @endif
+                <!-- ¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿ -->
              <p><label for="password" >
                 {{ __('Contraseña') }}
                 <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>
@@ -37,10 +38,16 @@
                             <strong>{{ $errors->first('password') }}</strong>
                         </span>
                     @endif
-            <p><label for="password-confirm"> 
+            <p><label for="password_confirm"> 
                     {{ __('Confirmar contraseña') }}
-                    <input id="password-confirm" type="password" class="form-control{{ $errors->has('password-confirm') ? ' is-invalid' : '' }}" name="password_confirmation" required>
+                    <input id="password_confirm" type="password" class="form-control{{ $errors->has('password_confirm') ? ' is-invalid' : '' }}" name="password_confirmation" required>
             </label></p>
+            @if ($errors->has('password_confirm'))
+            <span class="invalid-feedback" role="alert">
+                <strong>{{ $errors->first('password_confirm') }}</strong>
+            </span>
+            @endif
+            <!-- ¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿ -->
             <input class="btn btn-primary" type="submit" value="Enviar">
          </form>
         @endif
