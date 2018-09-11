@@ -48,6 +48,8 @@ class UsersController extends Controller
      */
     public function store(CreateUserRequest $request)
     {
+        
+        //dd($request->toArray());
         $request->flash(); //Esta linea es para que los datos ingresados no se pierdan en caso de que algo salga mal.
         
         //----- Estas lineas se remplazan por el Request CreateUserRequest
@@ -69,6 +71,7 @@ class UsersController extends Controller
         //     {
         //         return redirect()->route('users.create')->with('validateP', 'las contraseñas no coinciden');
         //     }
+        
         $user = User::create($request->all());
         return redirect()->route('users.create')->with('info', 'El usuario se ha creado con exito');
     }

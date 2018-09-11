@@ -1,6 +1,15 @@
 @extends('adminlte::page')
 
 @section('content')
+
+{{-- {!! Form::open(['route' => 'home']) !!}
+    <div class="form-group">
+        {!! Form::h1('welcome', 'Bienvenido') !!}
+    </div>
+{!! Form::close() !!} --}}
+
+{{-- 222222222222222222222222222222222222222222222222222222222222222222222222 --}}
+
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">

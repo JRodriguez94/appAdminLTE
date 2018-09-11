@@ -23,12 +23,14 @@ class CreateUserRequest extends FormRequest
      */
     public function rules()
     {
+        //dd($this->toArray());
         return [
             'name' => 'required',
             'phone' => 'required',
             'email' => 'required|email|unique:users,email',
-            'password' => 'required|min:8|confirmed',
-            //'password_confirmation' => 'required|same:password'
+            'password' => 'required|min:8',
+            //|confirmed
+            'password_confirmation' => 'required|min:8|same:password'
             
         ];
     }
